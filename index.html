@@ -58,6 +58,7 @@ button.main{text-align:center;border-color:var(--accent);color:var(--accent)}
 .title-k{text-align:center;font-size:1.2em;letter-spacing:.1em;margin:0 0 1.2em}
 .title-sub{text-align:center;color:var(--sub);margin-bottom:2em}
 .warn{font-size:.85em;color:var(--sub);border-top:1px solid var(--line);margin-top:2em;padding-top:1em}
+.warn p{padding-left:1em;text-indent:-1em}
 </style>
 </head>
 <body>
@@ -494,7 +495,7 @@ function title(){
   <div class="choices">
     ${btn("はじめから", start, "main")}
   </div>
-  <div class="warn">この物語はフィクションです。実在の人物・団体・企業とは関係ありません。<br>作中で人が亡くなる場面があります。<br>プレイ時間は30分前後です。</div>`);
+  <div class="warn"><p>・プレイ時間は30分前後です。</p><p>・作中で人が亡くなる場面があります。</p><p>・この物語はフィクションです。実在の人物・団体・企業とは関係ありません。</p></div>`);
 }
 
 function start(){
