@@ -898,11 +898,11 @@ function hub(){
   for (const g of HUB){
     h += `<h3>${g.h}</h3>`;
     if (g.items){
-      h += `<div class="group">` + g.items.map(([id,l]) => btn(l, ()=>block(id), v(id)?"read":"")).join("") + `</div>`;
+      h += `<div class="group">` + g.items.map(([id,l]) => btn(l, ()=>block(id), v(id)?"mid read":"mid")).join("") + `</div>`;
     } else {
       for (const p of g.people){
         const its = p.items.filter(([id])=>shown(id));
-        h += `<p class="person">${ruby(p.n, strip)}</p><div class="group">` + its.map(([id,l]) => btn(l + (CONDITIONAL.includes(id) && !v(id) ? `<span class="new">${NEW_LABEL}</span>` : ""), ()=>block(id), v(id)?"read":"")).join("") + `</div>`;
+        h += `<p class="person">${ruby(p.n, strip)}</p><div class="group">` + its.map(([id,l]) => btn(l + (CONDITIONAL.includes(id) && !v(id) ? `<span class="new">${NEW_LABEL}</span>` : ""), ()=>block(id), v(id)?"mid read":"mid")).join("") + `</div>`;
       }
     }
   }
