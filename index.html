@@ -789,8 +789,17 @@ const NOTE_URL = "";   /* Finの画面に出すnote記事のURL（空なら出�
 const GA_ID = "G-NRY8TNWV07";      /* Googleアナリティクスの測定ID（例：G-XXXXXXXXXX。空なら計測しない） */
 /* ========================================== */
 
+/* 自分の端末を計測から外すスイッチ：URLの末尾に ?notrack=1 を付けて一度開くと、その端末のそのブラウザは計測しない（?notrack=0 で元に戻る） */
+let NO_TRACK = false;
+try {
+  const q = new URLSearchParams(location.search).get("notrack");
+  if (q === "1") localStorage.setItem("oogiri_notrack", "1");
+  if (q === "0") localStorage.removeItem("oogiri_notrack");
+  NO_TRACK = localStorage.getItem("oogiri_notrack") === "1";
+} catch(e){}
+
 /* アクセス解析（GA4）。GA_IDが空なら何もしない */
-if (GA_ID){
+if (GA_ID && !NO_TRACK){
   const sc = document.createElement("script");
   sc.async = true; sc.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
   document.head.appendChild(sc);
@@ -871,7 +880,7 @@ function title(){
   <div class="choices">
     ${btn("はじめから", start, "main")}
   </div>
-  <div class="warn"><p>・プレイ時間は30分前後です。</p><p>・作中で人が亡くなる場面があります。</p><p>・この物語はフィクションです。実在の人物・団体・企業とは関係ありません。</p>${GA_ID ? "<p>・アクセス解析のため、Googleアナリティクスを使用しています。</p>" : ""}</div>`);
+  <div class="warn"><p>・プレイ時間は30分前後です。</p><p>・作中で人が亡くなる場面があります。</p><p>・この物語はフィクションです。実在の人物・団体・企業とは関係ありません。</p></div>${NO_TRACK ? `<p class="note ctr brk">この端末は計測オフ</p>` : ""}`);
 }
 
 function start(){
